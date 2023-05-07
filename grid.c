@@ -43,6 +43,12 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR szCmdLine,
     hwnd = CreateWindow(szAppName, TEXT("Temporizador"),
         WS_OVERLAPPEDWINDOW, CW_USEDEFAULT, CW_USEDEFAULT,
         CW_USEDEFAULT, CW_USEDEFAULT, NULL, NULL, hInstance, NULL);
+        thew=CreateWindowEx(
+                    0, "STATIC", NULL,
+                    WS_CHILD | WS_VISIBLE | WS_VSCROLL,
+                    0, 0, 640, 4000,
+                    hwnd, NULL, NULL, NULL
+                );
 for(nn=0;nn<lines;nn++){
                 for(nnn=0;nnn<2;nnn++){
                 int randomNumber = rand() % 50 + 1;
@@ -89,12 +95,7 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
     switch (message)
     {
         case WM_CREATE:
-        thew=CreateWindowEx(
-                    0, "STATIC", NULL,
-                    WS_CHILD | WS_VISIBLE | WS_VSCROLL,
-                    0, 0, 640, 4000,
-                    hwnd, NULL, NULL, NULL
-                );
+        
        
         hButton = CreateWindow("BUTTON", "up", WS_TABSTOP | WS_VISIBLE | WS_CHILD | BS_DEFPUSHBUTTON,
             650, 10, 50, 30,  hwnd, (HMENU)3, GetModuleHandle(NULL), NULL);
